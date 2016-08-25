@@ -1,85 +1,75 @@
 # React-Native List Popover
 
-Popover is a great way to show a list of items for users to choose from. With <ListPopover/> component you can add a very simple pop over screen with a list of items as the child component and access the selected item from the parent component. It is a very easy way of adding a list of options to the UI.
+Modified from [react-native-list-popover](https://github.com/bulenttastan/react-native-list-popover).
+
+The main aim for creating this branch is not for PR but to update the out-dated __react-native-list-popover__ and for other developers to take reference from this example.
+
+```<ListPopover/>``` - a popover of list
+
+```<ListPopoverBtn/>``` - an all-in-one btn for showing & hiding ListPopover
+
+## Added, Modified, & Removed Features
+
+1. Use [Modal](https://facebook.github.io/react-native/docs/modal.html) to show & hide ListPopover
+2. Full-screen ListPopover by default
+3. Remove __isVisible__ property from ListPopover component. Use __visible__ property from Modal to show & hide ListPopover instead.
 
 The main properties to send from the parent component:
-* `list` list of items to choose from
-* `isVisible` indicator that makes the popover visible or not
-* `onClick` callback function that takes an `item` parameter to handle the click operation
-* `onClose` callback function to set the isVisible to false to close the popover
+* `listArray` array of items to choose from
+* `onClick` callback function that takes a `data` parameter to handle the click operation
+* `onClose` callback function to set the visible of Modal to false to close the popover
 
+## Usage
 
-## Screenshots
-Before | List Popover | Selected
--------|--------------|---------
-![](https://raw.githubusercontent.com/bulenttastan/react-native-list-popover/master/Screenshots/screen1.png) | ![](https://raw.githubusercontent.com/bulenttastan/react-native-list-popover/master/Screenshots/screen2.png) | ![](https://raw.githubusercontent.com/bulenttastan/react-native-list-popover/master/Screenshots/screen3.png)
+Inside your RN project:
 
-# Usage
+1. Copy the ListPopover.js file to your desired destination.
+2. Install packages
 
-```js
-"use strict";
+  ```
+  npm install --save react-native-vector-icons
+  rnpm link
+  ```
+  
+  ```rnpm link``` is for linking [react-native-vector-icons](https://github.com/oblador/react-native-vector-icons) for the close icon.
+3. Make a reference to your ListPopover.js module, and start using it happily.
 
-var React = require('react-native');
-var ListPopover = require('react-native-list-popover');
-var {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} = React;
-var items = ["Item 1", "Item 2"];
+## Example
 
-var TestListPopover = React.createClass({
-  getInitialState: function() {
-    return {
-      item: "Select Item",
-      isVisible: false,
-    };
-  },
+![](https://github.com/pyliaorachel/react-native-list-popover/blob/list-popover-btn/ListPopover.gif)
 
-  showPopover: function() {
-    this.setState({isVisible: true});
-  },
-  closePopover: function() {
-    this.setState({isVisible: false});
-  },
-  setItem: function(item) {
-    this.setState({item: item});
-  },
+Please refer to [Example/index.ios.js](https://github.com/pyliaorachel/react-native-list-popover/blob/list-popover-btn/Example/index.ios.js) for the complete code.
 
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight style={styles.button} onPress={this.showPopover}>
-          <Text>{this.state.item}</Text>
-        </TouchableHighlight>
+```javascript
 
-        <ListPopover
-          list={items}
-          isVisible={this.state.isVisible}
-          onClick={this.setItem}
-          onClose={this.closePopover}/>
-      </View>
-    );
-  }
-});
+<View style={styles.container}>
+  <TouchableHighlight style={styles.btn} onPress={() => this.setState({popoverIsOpen: true})}>
+    <Text>ListPopover</Text>
+  </TouchableHighlight>
+  <Modal
+    animationType={"slide"}
+    transparent={false}
+    visible={this.state.popoverIsOpen}
+    onRequestClose={() => {console.log("Modal has been closed.")}}
+  >
+    <View>
+      <ListPopover
+        listArray={this.state.listArray}
+        title='ListPopover'
+        onClick={this.onClick}
+        onClose={() => this.setState({popoverIsOpen: false})}
+      />
+    </View>
+  </Modal>
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#532860',
-  },
-  button: {
-    borderRadius: 4,
-    padding: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    backgroundColor: "#B8C",
-  },
-});
+  <ListPopoverBtn
+    listArray={this.state.listArray}
+    title='ListPopoverBtn'
+    btnText='ListPopoverBtn'
+    onClick={this.onClick}
+  />
 
-AppRegistry.registerComponent('TestListPopover', () => TestListPopover);
+  <Text>{this.state.data}</Text>
+</View>
+
 ```
