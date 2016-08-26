@@ -28,9 +28,9 @@ Inside your RN project:
 
 ## Example
 
-![](https://github.com/pyliaorachel/react-native-list-popover/blob/list-popover-btn/ListPopover.gif)
+<img src="https://github.com/pyliaorachel/react-native-listview-modal/blob/master/ListviewModal.gif" alt="Sample" width="280" height="510" />
 
-Please refer to [Example/index.ios.js](https://github.com/pyliaorachel/react-native-list-popover/blob/list-popover-btn/Example/index.ios.js) for the complete code.
+Please refer to [Example/index.ios.js](https://github.com/pyliaorachel/react-native-listview-modal/blob/master/Example/index.ios.js) for the complete code.
 
 ```javascript
 
