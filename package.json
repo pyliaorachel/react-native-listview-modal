@@ -1,28 +1,26 @@
 {
-  "name": "react-native-list-popover",
+  "name": "react-native-listview-modal",
   "version": "0.0.1",
-  "description": "<ListPopover/> and <ListPopoverBtn/> components to render a selectable list",
-  "main": "ListPopover.js",
+  "description": "<ListviewModal/> and <ListviewModalBtn/> components to render a selectable list",
+  "main": "ListviewModal.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pyliaorachel/react-native-list-popover.git"
+    "url": "https://github.com/pyliaorachel/react-native-listview-modal.git"
   },
   "keywords": [
-    "list",
-    "popover",
+    "listview",
     "selectable",
     "modal"
   ],
   "author": "Peiyu Liao <rachel5566kk@gmail.com> @pyliaorachel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pyliaorachel/react-native-list-popover/issues"
+    "url": "https://github.com/pyliaorachel/react-native-listview-modal/issues"
   },
-  "homepage": "https://github.com/pyliaorachel/react-native-list-popover",
+  "homepage": "https://github.com/pyliaorachel/react-native-listview-modal",
   "dependencies": {
     "react": "15.2.1",
     "react-native": "0.31.0",
-    "react-native-vector-icons": "^2.1.0"
   }
 }
 }

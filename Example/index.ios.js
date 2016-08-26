@@ -1,5 +1,5 @@
 /**
- * Sample ListPopover
+ * Sample ListviewModal
  */
 
 import React, { Component } from 'react';
@@ -11,7 +11,7 @@ import {
   TouchableHighlight,
   Modal,
 } from 'react-native';
-import { ListPopover, ListPopoverBtn } from './ListPopover';
+import { ListviewModal, ListviewModalBtn } from './ListviewModal';
 
 class Example extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Example extends Component {
     return (
       <View style={styles.container}>
         <TouchableHighlight style={styles.btn} onPress={() => this.setState({popoverIsOpen: true})}>
-          <Text>ListPopover</Text>
+          <Text>ListviewModal</Text>
         </TouchableHighlight>
         <Modal
           animationType={"slide"}
@@ -56,19 +56,19 @@ class Example extends Component {
           onRequestClose={() => {console.log("Modal has been closed.")}}
         >
           <View>
-            <ListPopover
+            <ListviewModal
               listArray={this.state.listArray}
-              title='ListPopover'
+              title='ListviewModal'
               onClick={this.onClick}
               onClose={() => this.setState({popoverIsOpen: false})}
             />
           </View>
         </Modal>
 
-        <ListPopoverBtn
+        <ListviewModalBtn
           listArray={this.state.listArray}
-          title='ListPopoverBtn'
-          btnText='ListPopoverBtn'
+          title='ListviewModalBtn'
+          btnText='ListviewModalBtn'
           onClick={this.onClick}
         />
 

@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   View,
   Modal,
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -18,7 +19,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const noop = () => {};
 const ds = new ListView.DataSource({rowHasChanged: (r1,r2)=>(r1!==r2)});
 
-class ListPopover extends Component {
+class ListviewModal extends Component {
   constructor(props) {
     super(props);
 
@@ -85,20 +86,10 @@ class ListPopover extends Component {
       <TouchableOpacity onPress={this.props.onClose}>
         <View style={containerStyle}>
           <View style={topBarStyle}>
-            <View style={iconContainerStyle}>
-              <Icon
-                name="close"
-                size={30}
-                style={[closeIconButtonStyle, {color: 'transparent'}]}
-              />
-            </View>
+            <View style={iconContainerStyle} />
             <Text style={titleStyle}>{title}</Text>
             <TouchableOpacity style={iconContainerStyle} onPress={()=> this.props.onClose()}>
-              <Icon
-                name="close"
-                size={30}
-                style={closeIconButtonStyle}
-              />
+              <Image source={require('./icon/icon_close.png')} style={closeIconButtonStyle}/>
             </TouchableOpacity>
           </View>
           {this.renderList()}
@@ -108,7 +99,7 @@ class ListPopover extends Component {
   }
 };
 
-class ListPopoverBtn extends Component {
+class ListviewModalBtn extends Component {
   constructor(props) {
     super(props);
 
@@ -136,7 +127,7 @@ class ListPopoverBtn extends Component {
           onRequestClose={() => {console.log("Modal has been closed.")}}
         >
           <View>
-            <ListPopover
+            <ListviewModal
               listArray={this.props.listArray}
               title={this.props.title}
               onClick={onClick}
@@ -195,8 +186,9 @@ const DefaultStyles = StyleSheet.create({
     flex: 1,
   },
   closeIconButton: {
+    width: 30,
+    height: 30,
     paddingRight: 10,
-    color: 'black',
     backgroundColor: 'transparent',
   },
   rowText: {
@@ -217,7 +209,7 @@ const DefaultStyles = StyleSheet.create({
   },
 });
 
-ListPopover.propTypes = {
+ListviewModal.propTypes = {
   listArray: PropTypes.array.isRequired,
   onClick: PropTypes.func,
   onClose: PropTypes.func,
@@ -228,15 +220,15 @@ ListPopover.propTypes = {
   topBarStyle: View.propTypes.style,
   titleStyle: Text.propTypes.style,
   iconContainerStyle: View.propTypes.style,
-  closeIconButtonStyle: Text.propTypes.style,
+  closeIconButtonStyle: Image.propTypes.style,
   rowTextStyle: Text.propTypes.style,
   rowStyle: View.propTypes.style,
 };
-ListPopover.defaultProps = {
+ListviewModal.defaultProps = {
   listArray: [],
   onClick: noop,
   onClose: noop,
-  title: 'MyListPopover',
+  title: '',
   containerStyle: DefaultStyles.container,
   listViewStyle: DefaultStyles.listView,
   separatorStyle: DefaultStyles.separator,
@@ -248,17 +240,17 @@ ListPopover.defaultProps = {
   rowStyle: DefaultStyles.row,
 };
 
-ListPopoverBtn.propTypes = Object.assign({}, ListPopover.propTypes, {
+ListviewModalBtn.propTypes = Object.assign({}, ListviewModal.propTypes, {
   btnStyle: View.propTypes.style,
   btnText: PropTypes.string,
 });
-ListPopoverBtn.defaultProps = Object.assign({}, ListPopover.defaultProps, {
+ListviewModalBtn.defaultProps = Object.assign({}, ListviewModal.defaultProps, {
   onClick: null,
   btnStyle: DefaultStyles.btn,
   btnText: 'Select',
 });
 
 module.exports = {
-  ListPopover,
-  ListPopoverBtn,
+  ListviewModal,
+  ListviewModalBtn,
 };
